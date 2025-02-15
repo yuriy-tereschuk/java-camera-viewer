@@ -9,8 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import uk.co.caprica.vlcj.player.component.EmbeddedMediaPlayerComponent;
 
-import java.lang.String;
-
 public class CameraViewBoard extends JFrame {
 
     public CameraViewBoard(PlayList resources) {
