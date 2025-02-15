@@ -13,11 +13,7 @@ import java.lang.String;
 
 public class CameraViewBoard extends JFrame {
 
-    String cam1 = "rtsp://operator:0perat0r@172.22.22.18:554/cam/realmonitor?channel=1&subtype=0";
-    String cam2 = "rtsp://operator:0perat0r@172.22.22.19:554/cam/realmonitor?channel=1&subtype=0";
-    String cam3 = "rtsp://operator:0perat0r@172.22.22.20:554/cam/realmonitor?channel=1&subtype=0";
-
-    public CameraViewBoard(java.util.List<String> resources) {
+    public CameraViewBoard(PlayList resources) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel();
@@ -74,8 +70,8 @@ public class CameraViewBoard extends JFrame {
         setSize(1024, 730);
         setVisible(true);
 
-        camera1.mediaPlayer().media().play(cam1);
-        camera2.mediaPlayer().media().play(cam2);
-        camera3.mediaPlayer().media().play(cam3);
+        camera1.mediaPlayer().media().play(resources.getPropertyValue("cam1"));
+        camera2.mediaPlayer().media().play(resources.getPropertyValue("cam2"));
+        camera3.mediaPlayer().media().play(resources.getPropertyValue("cam3"));
     }
 }

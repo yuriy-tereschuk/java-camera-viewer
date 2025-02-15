@@ -3,12 +3,13 @@
  */
 package ua.myhome.camera.viewer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class App {
-    public static void main(String[] args) {
-        List<String> resources = new ArrayList<>();
+    public static void main(String[] args) throws IOException {
+        PlayList resources = new PlayList();
         new CameraViewBoard(resources);
     }
 }
