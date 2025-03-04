@@ -12,7 +12,3 @@ plugins {
 
 rootProject.name = 'java-camera-viewer'
 include('app')
-
-# gradle.properties
-systemProp.sonar.host.url=http://172.17.0.3:9000
-
