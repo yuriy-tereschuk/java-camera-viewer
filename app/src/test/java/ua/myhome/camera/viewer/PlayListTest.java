@@ -8,7 +8,7 @@ import java.util.Set;
 import org.testng.annotations.*;
 import static org.testng.Assert.*;
 
-public class AppTest {
+public class PlayListTest {
     @Test public void testPropertiesNames() throws IOException {
         PlayList playList = new PlayList();
         Set<String> expected = Set.of("cam1", "cam2", "cam3");
