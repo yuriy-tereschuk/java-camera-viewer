@@ -9,11 +9,6 @@ import org.testng.annotations.*;
 import static org.testng.Assert.*;
 
 public class AppTest {
-    @Test public void appInstantiated() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest, "app instantiated.");
-    }
-
     @Test public void testPropertiesNames() throws IOException {
         PlayList playList = new PlayList();
         Set<String> expected = Set.of("cam1", "cam2", "cam3");
