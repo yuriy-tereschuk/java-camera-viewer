@@ -4,9 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
+
 import uk.co.caprica.vlcj.player.component.EmbeddedMediaPlayerComponent;
 
 public class CameraViewBoard extends JFrame {
@@ -19,7 +18,7 @@ public class CameraViewBoard extends JFrame {
     private static final String CAM_ID_3 = "cam3";
 
     public CameraViewBoard(PlayList resources) {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createTitledBorder("Cameras"));
