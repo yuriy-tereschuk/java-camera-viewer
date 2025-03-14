@@ -6,5 +6,6 @@ Player based on Caprica VLC4J wrapper.
 Required:
  - VLC library
  - Live555 library
-
+ - FFMPEG
+ - Jaffree ffmpeg wrapper
 
