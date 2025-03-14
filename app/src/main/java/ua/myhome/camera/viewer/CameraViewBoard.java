@@ -49,7 +49,9 @@ public class CameraViewBoard extends JFrame {
         FlowLayout cam1Layout = new FlowLayout(FlowLayout.CENTER, 3, 3);
         cam1Layout.layoutContainer(cam1ControlPanel);
         cam1ControlPanel.add(new Button(STREAM_INFO));
-        cam1ControlPanel.add(new Button("Record Cam1"));
+        Button cam1Button = new Button("Record Cam1");
+        cam1Button.addActionListener(new FFMpeg(CAM_ID_1, resources.getPropertyValue(CAM_ID_1)));
+        cam1ControlPanel.add(cam1Button);
         cam1ControlPanel.add(new Button(STORAGE_PATH));
         p1.add(cam1ControlPanel, BorderLayout.PAGE_END);
 
@@ -58,7 +60,9 @@ public class CameraViewBoard extends JFrame {
         FlowLayout cam2Layout = new FlowLayout(FlowLayout.CENTER, 3, 3);
         cam2Layout.layoutContainer(cam1ControlPanel);
         cam2ControlPanel.add(new Button(STREAM_INFO));
-        cam2ControlPanel.add(new Button("Record Cam2"));
+        Button cam2Button = new Button("Record Cam2");
+        cam2Button.addActionListener(new FFMpeg(CAM_ID_2, resources.getPropertyValue(CAM_ID_2)));
+        cam2ControlPanel.add(cam2Button);
         cam2ControlPanel.add(new Button(STORAGE_PATH));
         p2.add(cam2ControlPanel, BorderLayout.PAGE_END);
 
@@ -67,7 +71,9 @@ public class CameraViewBoard extends JFrame {
         FlowLayout cam3Layout = new FlowLayout(FlowLayout.CENTER, 3, 3);
         cam3Layout.layoutContainer(cam1ControlPanel);
         cam3ControlPanel.add(new Button(STREAM_INFO));
-        cam3ControlPanel.add(new Button("Record Cam3"));
+        Button cam3Button = new Button("Record Cam3");
+        cam3Button.addActionListener(new FFMpeg(CAM_ID_3, resources.getPropertyValue(CAM_ID_3)));
+        cam3ControlPanel.add(cam3Button);
         cam3ControlPanel.add(new Button(STORAGE_PATH));
         p3.add(cam3ControlPanel, BorderLayout.PAGE_END);
 

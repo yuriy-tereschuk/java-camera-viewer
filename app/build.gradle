@@ -20,6 +20,12 @@ repositories {
 
 dependencies {
     implementation 'uk.co.caprica:vlcj:4.8.3'
+    // https://mvnrepository.com/artifact/com.github.kokorin.jaffree/jaffree
+    implementation 'com.github.kokorin.jaffree:jaffree:2024.08.29'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation 'org.slf4j:slf4j-api:2.0.17'
+    // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+    implementation 'ch.qos.logback:logback-classic:1.5.17'
     // Use TestNG framework, also requires calling test.useTestNG() below
     testImplementation libs.testng
 
