@@ -4,10 +4,7 @@ import com.github.kokorin.jaffree.ffmpeg.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Path;
-import java.util.Objects;
 
 public class FFMpeg implements ActionListener {
 
