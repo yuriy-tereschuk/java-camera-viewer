@@ -32,27 +32,23 @@ public class FFMpeg implements ActionListener {
             return;
         }
 
-        try {
-            URL ffmpUrl = getClass().getClassLoader().getResource("ffmpeg");
-            this.fFmpegResultFuture =
-                FFmpeg.atPath(Path.of(Objects.requireNonNull(ffmpUrl).toURI()))
-                      .addInput(UrlInput.fromUrl(this.resource))
-                      .addOutput(UrlOutput.toPath(Path.of(String.format("output-%s-%%03d.mp4", this.id))))
-                        .setOverwriteOutput(true)
-                        .addArguments("-acodec", "copy")
-                        .addArguments("-vcodec", "copy")
-                        .addArgument("-hide_banner")
-                        .addArguments("-loglevel", "error")
-                        .addArguments("-rtsp_transport", "udp")
-                        .addArguments("-use_wallclock_as_timestamps","1")
-                        .addArguments("-segment_atclocktime", "1")
-                        .addArguments("-f", "segment")
-                        .addArguments("-segment_time", "900")
-                        .addArguments("-reset_timestamps", "1")
-                      .executeAsync();
-
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+        Path ffmpegBinDir = Path.of(System.getenv("FFMPEG"));
+        this.fFmpegResultFuture =
+            FFmpeg.atPath(ffmpegBinDir)
+                  .addInput(UrlInput.fromUrl(this.resource))
+                  .addOutput(UrlOutput.toPath(Path.of(String.format("output-%s-%%Y%%m%%dT%%H%%M%%S.mp4", this.id))))
+                    .setOverwriteOutput(true)
+                    .addArgument("-hide_banner")
+                    .addArguments("-strftime", "1")
+                    .addArguments("-acodec", "copy")
+                    .addArguments("-vcodec", "copy")
+                    .addArguments("-loglevel", "error")
+                    .addArguments("-rtsp_transport", "udp")
+                    .addArguments("-use_wallclock_as_timestamps","1")
+                    .addArguments("-segment_atclocktime", "1")
+                    .addArguments("-f", "segment")
+                    .addArguments("-segment_time", "900")
+                    .addArguments("-reset_timestamps", "1")
+                  .executeAsync();
     }
 }
