@@ -1,21 +1,19 @@
 package ua.myhome.camera.viewer;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import uk.co.caprica.vlcj.player.component.EmbeddedMediaPlayerComponent;
+
+import javax.swing.*;
 
 public class CameraViewBoard extends JFrame {
 
     private static final String STREAM_INFO = "Stream Info";
     private static final String STORAGE_PATH = "Storage Path";
-
-    private static final String CAM_ID_1 = "cam1";
-    private static final String CAM_ID_2 = "cam2";
-    private static final String CAM_ID_3 = "cam3";
 
     public CameraViewBoard(PlayList resources) {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -26,62 +24,34 @@ public class CameraViewBoard extends JFrame {
 
         panel.setLayout(new GridLayout(2, 2, 3,3));
 
-        EmbeddedMediaPlayerComponent camera1 = new EmbeddedMediaPlayerComponent();
-        EmbeddedMediaPlayerComponent camera2 = new EmbeddedMediaPlayerComponent();
-        EmbeddedMediaPlayerComponent camera3 = new EmbeddedMediaPlayerComponent();
+        List<String> cameras = new ArrayList<>(resources.getProperties());
+        List<EmbeddedMediaPlayerComponent> players = new ArrayList<>(cameras.size());
 
-        JPanel p1 = new JPanel(new BorderLayout());
-        p1.setBorder(BorderFactory.createTitledBorder(CAM_ID_1));
-        add(p1);
-        JPanel p2 = new JPanel(new BorderLayout());
-        p2.setBorder(BorderFactory.createTitledBorder(CAM_ID_2));
-        add(p2);
-        JPanel p3 = new JPanel(new BorderLayout());
-        p3.setBorder(BorderFactory.createTitledBorder(CAM_ID_3));
-        add(p3);
+        for (int i = 0; i < cameras.size(); i++) {
+            String cameraId = cameras.get(i);
+            players.add(i, new EmbeddedMediaPlayerComponent());
 
-//        add(new JPanel()); // dummy, for alignment purpose only
-//        add(new JPanel()); // dummy, for alignment purpose only
-//        add(new JPanel()); // dummy, for alignment purpose only
+            JPanel jPanel = new JPanel(new BorderLayout());
+            jPanel.setBorder(BorderFactory.createTitledBorder(cameraId));
+            add(jPanel);
 
-        p1.add(camera1, BorderLayout.CENTER);
-        JPanel cam1ControlPanel= new JPanel();
-        FlowLayout cam1Layout = new FlowLayout(FlowLayout.CENTER, 3, 3);
-        cam1Layout.layoutContainer(cam1ControlPanel);
-        cam1ControlPanel.add(new Button(STREAM_INFO));
-        Button cam1Button = new Button("Record Cam1");
-        cam1Button.addActionListener(new FFMpeg(CAM_ID_1, resources.getPropertyValue(CAM_ID_1)));
-        cam1ControlPanel.add(cam1Button);
-        cam1ControlPanel.add(new Button(STORAGE_PATH));
-        p1.add(cam1ControlPanel, BorderLayout.PAGE_END);
-
-        p2.add(camera2, BorderLayout.CENTER);
-        JPanel cam2ControlPanel= new JPanel();
-        FlowLayout cam2Layout = new FlowLayout(FlowLayout.CENTER, 3, 3);
-        cam2Layout.layoutContainer(cam1ControlPanel);
-        cam2ControlPanel.add(new Button(STREAM_INFO));
-        Button cam2Button = new Button("Record Cam2");
-        cam2Button.addActionListener(new FFMpeg(CAM_ID_2, resources.getPropertyValue(CAM_ID_2)));
-        cam2ControlPanel.add(cam2Button);
-        cam2ControlPanel.add(new Button(STORAGE_PATH));
-        p2.add(cam2ControlPanel, BorderLayout.PAGE_END);
-
-        p3.add(camera3, BorderLayout.CENTER);
-        JPanel cam3ControlPanel= new JPanel();
-        FlowLayout cam3Layout = new FlowLayout(FlowLayout.CENTER, 3, 3);
-        cam3Layout.layoutContainer(cam1ControlPanel);
-        cam3ControlPanel.add(new Button(STREAM_INFO));
-        Button cam3Button = new Button("Record Cam3");
-        cam3Button.addActionListener(new FFMpeg(CAM_ID_3, resources.getPropertyValue(CAM_ID_3)));
-        cam3ControlPanel.add(cam3Button);
-        cam3ControlPanel.add(new Button(STORAGE_PATH));
-        p3.add(cam3ControlPanel, BorderLayout.PAGE_END);
+            jPanel.add(players.get(i), BorderLayout.CENTER);
+            JPanel camControlPanel = new JPanel();
+            FlowLayout cam1Layout = new FlowLayout(FlowLayout.CENTER, 3, 3);
+            cam1Layout.layoutContainer(camControlPanel);
+            camControlPanel.add(new JButton(STREAM_INFO));
+            JToggleButton recordButton = new JToggleButton("Record " + cameraId);
+            recordButton.addActionListener(new FFMpeg(cameraId, resources.getPropertyValue(cameraId)));
+            camControlPanel.add(recordButton);
+            camControlPanel.add(new JButton(STORAGE_PATH));
+            jPanel.add(camControlPanel, BorderLayout.PAGE_END);
+        }
 
         setSize(1024, 730);
         setVisible(true);
 
-        camera1.mediaPlayer().media().play(resources.getPropertyValue(CAM_ID_1));
-        camera2.mediaPlayer().media().play(resources.getPropertyValue(CAM_ID_2));
-        camera3.mediaPlayer().media().play(resources.getPropertyValue(CAM_ID_3));
+        for (int i = 0; i < cameras.size(); i++) {
+            players.get(i).mediaPlayer().media().play(resources.getPropertyValue(cameras.get(i)));
+        }
     }
 }

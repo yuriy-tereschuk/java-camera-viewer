@@ -46,6 +46,12 @@ public class FFMpeg implements ActionListener {
                     .addArguments("-f", "segment")
                     .addArguments("-segment_time", "900")
                     .addArguments("-reset_timestamps", "1")
+                    .setProgressListener(new ProgressListener() {
+                        @Override
+                        public void onProgress(FFmpegProgress fFmpegProgress) {
+                            // do nothing
+                        }
+                    })
                   .executeAsync();
     }
 }
