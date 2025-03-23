@@ -1,0 +1,6 @@
+steps:
+  gradleExecuteBuild:
+    buildFlags:
+      - clean
+      - build
+      - sonar

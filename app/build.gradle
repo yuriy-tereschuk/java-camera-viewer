@@ -54,6 +54,8 @@ sonar {
   properties {
     property "sonar.projectKey", "java-camera-viewer"
     property "sonar.projectName", "java-camera-viewer"
+	property "sonar.host.url", "http://localhost:9000"
+	property "sonar.token", "sqp_106405112bb860394918554cd41dd5775d7457e4"
   }
 }
 
