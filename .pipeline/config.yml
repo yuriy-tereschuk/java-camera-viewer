@@ -1,6 +1,7 @@
 steps:
   gradleExecuteBuild:
+    path: app
     buildFlags:
-      - clean
-      - build
-      - sonar
+        - clean
+        - build
+        - sonar
