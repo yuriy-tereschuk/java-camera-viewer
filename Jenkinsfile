@@ -5,7 +5,7 @@ node() {
         setupCommonPipelineEnvironment script:this
     }
 	stage('build') {
-		gradleBuild script:this
+		gradleExecuteBuild script:this
 	}
 	stage('static code check') {
 		sonarExecuteScan script:this
