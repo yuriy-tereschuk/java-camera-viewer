@@ -4,3 +4,9 @@ steps:
     buildFlags:
         - clean
         - build
+  sonarExecuteScan:
+    token: squ_f03ec7e40d29290af955ca530c527a9d04189c53
+    serverUrl: http://sonarqube:9000
+    verbose: true
+    projectKey: java-camera-viewer
+    
