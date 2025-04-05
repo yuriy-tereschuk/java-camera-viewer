@@ -1,3 +1,7 @@
+parameters:
+  sonarExecuteScan:
+    token: "squ_f03ec7e40d29290af955ca530c527a9d04189c53"
+
 steps:
   gradleExecuteBuild:
     path: app
@@ -5,8 +9,8 @@ steps:
         - clean
         - build
   sonarExecuteScan:
-    token: squ_f03ec7e40d29290af955ca530c527a9d04189c53
     serverUrl: http://sonarqube:9000
+    token: "squ_f03ec7e40d29290af955ca530c527a9d04189c53"
     verbose: true
     projectKey: java-camera-viewer
-    
+    sonarScannerDownloadUrl: "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.0.2.4839-linux-x64.zip"
