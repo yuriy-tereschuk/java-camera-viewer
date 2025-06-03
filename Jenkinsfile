@@ -17,7 +17,7 @@ pipeline {
       }
     }
     stage('static code check') {
-      {
+      steps {
         sonarExecuteScan script:this
       }
     }
