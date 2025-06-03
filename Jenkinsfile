@@ -1,6 +1,10 @@
 @Library('piper-lib-os') _
 
-node() {
+pipeline {
+
+  agent any
+
+  stages {
     stage('prepare') {
         checkout scm
         setupCommonPipelineEnvironment script:this
@@ -11,9 +15,12 @@ node() {
     stage('static code check') {
 		sonarExecuteScan script:this
     }
-    post {
-        always {
-            archiveArtifacts artifacts: '*.json', fingerprint: true
-        }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: '*.json', fingerprint: true
     }
+  }
 }
+
