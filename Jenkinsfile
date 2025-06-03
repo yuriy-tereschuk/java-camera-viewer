@@ -11,4 +11,9 @@ node() {
     stage('static code check') {
 		sonarExecuteScan script:this
     }
+    post {
+        always {
+            archiveArtifacts artifacts: '*.json', fingerprint: true
+        }
+    }
 }
