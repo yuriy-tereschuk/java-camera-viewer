@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class PlayList {
     private static final Properties properties = new Properties();
@@ -14,7 +15,8 @@ public class PlayList {
     }
 
     public Set<String> getProperties() {
-        return properties.stringPropertyNames();
+        return properties.stringPropertyNames().stream()
+                .filter(name -> !name.startsWith(";")).collect(Collectors.toSet());
     }
 
     public String getPropertyValue(String property) {
